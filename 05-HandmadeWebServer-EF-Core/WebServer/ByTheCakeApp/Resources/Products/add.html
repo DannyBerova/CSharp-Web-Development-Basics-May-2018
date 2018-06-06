@@ -1,0 +1,27 @@
+﻿<a href="/">Back to home</a>
+
+<form method="post">
+    <br />
+    <label for="name">Name</label>
+    <input id="name" type="text" name="name" placeholder="Name"
+           required oninvalid="this.setCustomValidity('Please, enter a cake name')" oninput="setCustomValidity('')" />
+    <label for="price">Price</label>
+    <input id="price" type="number" min="0" step="0.01" name="price" placeholder="Price"
+           required oninvalid="this.setCustomValidity('Please, enter a value for cake price')" oninput="setCustomValidity('')" />
+    <label for="imageUrl">Picture URL</label>
+    <input id="imageUrl" type="url" name="imageUrl" placeholder="Picture URL"
+           required oninvalid="this.setCustomValidity('Please, enter a cake picture Url')" oninput="setCustomValidity('')" />
+    <br />
+    <input type="submit" value="Add Cake" />
+    <br />
+</form>
+
+<div style="display: {{{showError}}}; color: red">
+    {{{error}}}
+</div>
+
+<div style="display:{{{showResult}}}">
+    <div>Name: {{{name}}}</div>
+    <div>Price: {{{price}}}</div>
+    <img src="{{{imageUrl}}}" alt="{{{name}}}" width="400"/>
+</div>
