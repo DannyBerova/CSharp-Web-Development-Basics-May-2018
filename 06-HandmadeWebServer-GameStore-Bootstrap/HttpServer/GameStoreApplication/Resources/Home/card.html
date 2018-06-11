@@ -1,0 +1,25 @@
+﻿
+    <div class="card m-md-2  col-md-4 bg-light border-white rounded" >
+        <img class="card-image-top img-fluid img-thumbnail" style="height:180px"
+             onerror="this.src={1}"
+             src="{2}">
+
+        <div class="card-body">
+            <h4 class="card-title">{3}</h4>
+            <p class="card-text"><strong>Price</strong> - {4}&euro;</p>
+            <p class="card-text"><strong>Size</strong> - {5} GB</p>
+            <p class="card-text">{6}</p>
+        </div>
+
+        <div class="card-footer border-white bg-transparent">
+            <a class="card-button btn btn-warning" name="edit" href="/admin/games/edit/{0}" style="display: {7}">Edit</a>
+            <a class="card-button btn btn-danger" name="delete" href="/admin/games/delete/{0}" style="display: {7}">Delete</a>
+                            
+            <a class="card-button btn btn-outline-primary" name="info" href="/games/details/{0}">Info</a>
+            <a class="card-button btn btn-primary" name="buy" href="/games/buy/{0}" style="display: {8}">Buy</a>
+            <br/>
+            <br/>
+        </div>
+        <br/>
+        <br/>
+    </div>

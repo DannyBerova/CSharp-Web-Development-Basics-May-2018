@@ -1,0 +1,17 @@
+﻿<div style="display:{{{showCart}}}; color: green;">
+    <a href="/cart">Your Cart: {{{products}}}</a>
+</div>
+
+<form method="get">
+    <div class="form-group col-4">
+        <label for="searchTerm">Search:</label>
+        <input type="text" class="form-control" id="searchTerm" name="searchTerm" aria-describedby="searchTerm" placeholder="Enter product name" value="{{{searchTerm}}}">
+    </div>
+
+    <input type="submit" value="Search" class="btn btn-info" />
+    <a href="/" class="btn btn-outline-dark">Back to home</a>
+</form>
+
+<div style="display:{{{showResult}}}">
+    {{{results}}}
+</div>

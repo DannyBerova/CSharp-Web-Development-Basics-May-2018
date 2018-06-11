@@ -1,0 +1,36 @@
+﻿<!--Body of the store-->
+<main>
+    <div class="container">
+        <div class="row" style="border:solid 1px #3399FF">
+            <div class="col-12 text-center">
+
+                <h1 class="display-3">{{{title}}}</h1>
+                <br />
+
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/{{{videoId}}}" frameborder="0"
+                        allowfullscreen></iframe>
+
+                <br />
+                <br />
+
+                <p>
+                    {{{description}}}
+                </p>
+
+                <p><strong>Price</strong> - {{{price}}}&euro;</p>
+                <p><strong>Size</strong> - {{{size}}} GB</p>
+                <p><strong>Release Date</strong> - {{{releaseDate}}}</p>
+
+                <a class="btn btn-outline-primary" href="/">Back</a>
+                <a class="btn btn-warning" href="/admin/games/edit/{{{id}}}" style="display: {{{adminDisplay}}}">Edit</a>
+                <a class="btn btn-danger" href="/admin/games/delete/{{{id}}}" style="display: {{{adminDisplay}}}">Delete</a>
+                <a class="btn btn-primary" href="/games/buy/{{{id}}}" style="display: {{{ownedGameDisplay}}}">Buy</a>
+
+                <br />
+                <br />
+
+            </div>
+        </div>
+    </div>
+</main>
+<br />

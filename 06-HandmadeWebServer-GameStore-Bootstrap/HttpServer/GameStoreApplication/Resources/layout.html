@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Game Store</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/bootstrap-grid.min.css" rel="stylesheet" />
+    <link href="/css/bootstrap-reboot.min.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-md navbar-light bg-primary text-white">
+            <div class="container ">
+                <a class="navbar-brand text-white" href="/">SoftUni Store</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse text-white" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto text-white">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/account/cart">Cart</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav text-white" style="display: {{{anonymousDisplay}}}">
+                        <li class="nav-item text-white">
+                            <a class="nav-link text-white" href="/account/login">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/account/register">Register</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav text-white" style="display: {{{authenticatedDisplay}}}">
+                        <li class="nav-item dropdown text-white" style="display: {{{adminDisplay}}}">
+                            <a class="nav-link dropdown-toggle text-white bg-primary" href="#" id="AdminDropdownMenuLink"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Admin
+                            </a>
+                            <div class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item " href="/admin/games/add">Add Games</a>
+                                <a class="dropdown-item " href="/admin/games/list">All Games</a>
+                            </div>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/account/logout">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </nav>
+    </header>
+
+    <div class="col-4 ml-auto mr-auto text-center">
+        <br />
+        <div class="alert alert-danger" role="alert" style="display: {{{showError}}}">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <strong>{{{error}}}</strong>
+        </div>
+    </div>
+
+    {{{content}}}
+
+    <!--Footer-->
+    <footer>
+        <div class="container modal-footer">
+            <p>&copy; 2017 - Software University Foundation</p>
+        </div>
+    </footer>
+
+    <script src="/scripts/jquery-3.1.1.min.js"></script>
+    <script src="/scripts/bootstrap.min.js"></script>
+</body>
+</html>
