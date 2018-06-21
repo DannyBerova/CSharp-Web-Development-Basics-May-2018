@@ -1,0 +1,36 @@
+﻿<div class="container">
+    <h3 class="text-center text-primary">{{{username}}} notes</h3>
+    <br />
+    <div class="col-12 ml-auto mr-auto text-center">
+        <a href="/user/all">Back</a>
+    </div>
+    <div class="col-md-12 text-right">
+        <nav style="display: {{{paginationDisplay}}}">
+            <ul class="pagination">
+                {{{prevButton}}}
+                {{{pages}}}
+                {{{nextButton}}}
+            </ul>
+        </nav>
+    </div>
+    <div class="container">
+        <div class="row">
+            <table class="table table-striped table-primary text-center">
+                <thead>
+                    <tr>
+                        <th class="text-center">#</th>
+                        <th class="text-center">Title</th>
+                        <th class="text-center">Content</th>
+                        <th class="text-center">CreationDate</th>
+                        <th class="text-center">Status</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{{notes}}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

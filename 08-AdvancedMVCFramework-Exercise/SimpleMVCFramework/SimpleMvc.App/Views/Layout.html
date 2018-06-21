@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Notes</title>
+    <link href="../Resources/css/bootstrap.css" rel="stylesheet" />
+    <link href="../Resources/css/custom.css" rel="stylesheet" />
+    <script src="../Resources/js/jquery-3.3.1.js"></script>
+    <script src="../Resources/js/bootstrap.js"></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-md navbar-light bg-primary text-white">
+            <div class="container">
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <a class="navbar-brand text-white " href="/">Notes Application</a>
+
+                <ul class="navbar-nav text-white" style="display: {{{displayType}}}">
+                    <li class="nav-item text-white bg-primary">
+                        <a class="nav-link text-white" href="/notes/add">Add Note</a>
+                    </li>
+                    <li class="nav-item text-white bg-primary">
+                        <form action="/user/logout" method="post">
+                            <input type="submit" class="btn btn-primary btn-md" style="display: {{{displayType}}}" value="Logout" />
+                        </form>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav text-white" style="display: {{{authenticatedDisplay}}}">
+                    <li class="nav-item text-white">
+                        <a class="nav-link text-white" href="/user/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/user/register">Register</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="bgimg-1">
+            <div class="col-6 ml-auto mr-auto text-center">
+                <br />
+                <img src="Head.jpg" />
+            </div>
+            <br />
+            <div class="row text-center">
+                <div class="col-10 ml-auto mr-auto text-center">
+                    <div class="alert alert-danger" style="display: {{{show-error}}}">
+                        {{{error}}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-9 ml-auto mr-auto text-center">
+                {{{content}}}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

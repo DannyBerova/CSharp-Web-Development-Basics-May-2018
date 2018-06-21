@@ -1,0 +1,24 @@
+﻿<div class="container">
+    <br />
+    <br />
+    <h3 class="text-center text-warning">Note</h3>
+    <br />
+    <div class="box">
+        <div class="col-12 py-2">
+            <div class="card h-100 text-dark">
+                <div class="card-header"><h5 class="text-center">{{{title}}}</h5></div>
+                <div class="card-body">
+                    <p class="card-text text-info">{{{content}}}</p>
+                </div>
+                <div class="card-footer bg-transparent text-dark">
+                    <small>{{{dateOfCreation}}}</small>
+                </div>
+                <div class="card-footer">
+                    <a href="/note/edit?id={{{noteId}}}" class="btn btn-warning">Edit</a>
+                    <a href="/note/delete?id={{{noteId}}}" class="btn btn-danger">Delete</a>
+                    <a href="/Note/All?page=1" class="btn btn-outline-secondary">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
