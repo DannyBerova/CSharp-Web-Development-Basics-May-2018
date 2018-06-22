@@ -3,6 +3,6 @@
     public class Configuration
     {
         public const string ConfigurationString =
-            @"Server=DESKTOP-32FEOB6\SQLEXPRESS;Database=NotesDb;Integrated Security=True";
+            @"Server=.;Database=NotesDb;Integrated Security=True";
     }
 }
