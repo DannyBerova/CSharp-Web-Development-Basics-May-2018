@@ -10,16 +10,16 @@
         public string Username { get; set; }
 
         [Required]
-        [MinLength(3)]
+        [MinLength(4)]
         [MaxLength(30)]
         public string Password { get; set; }
 
         [Required]
-        //[Compare(nameof(Password))]
+        [Compare(nameof(Password))]
         public string ConfirmPassword { get; set; }
 
         [Required]
-        [EmailAddress]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
     }
 }

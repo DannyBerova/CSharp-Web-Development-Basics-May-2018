@@ -43,10 +43,19 @@
             }
         }
 
-        public bool UserExists(string username, string password)
-            => this.db
-                .Users
-                .Any(u => u.Username == username && u.Password == HashPassword.GetHashSha256(password));
+        public User UserExists(string username, string password)
+        {
+            User user = null;
+            var users = this.db.Users.AsQueryable();
+
+            user = users
+                .AsEnumerable()
+                .FirstOrDefault(t => t.Username == username && t.Password == HashPassword.GetHashSha256(password));
+            //return this.db
+            //    .Users
+            //    .Any(u => u.Username == username && u.Password == HashPassword.GetHashSha256(password));
+            return user;
+        }
 
         public UserViewModel GetByName(string username)
         {

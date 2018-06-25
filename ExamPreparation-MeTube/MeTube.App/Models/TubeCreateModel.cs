@@ -12,13 +12,11 @@
         [MinLength(3)]
         public string Author { get; set; }
 
-        [Required]
-        [MinLength(4)]
+      
         public string Description { get; set; }
 
         [Required]
-        [MinLength(11)]
-        [MaxLength(11)]
+        [DataType(DataType.Url)]
         public string VideoId { get; set; }
 
         ////[Required]

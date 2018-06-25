@@ -1,5 +1,6 @@
 ﻿namespace MeTube.App.Controllers
 {
+    using System.Linq;
     using Helpers;
     using Models;
     using Services;
@@ -8,7 +9,7 @@
 
     public class TubesController : BaseController
     {
-        public const string CreateNoteErrorMessage = @"<p>Check your form for errors.</p><p>Author's name must be 3 symbols minimum.</p><p>Title must be 3 symbols minimum.</p><p>Description must be 4 symbols minimum.</p><p>VideoId must be 11 symbols precise.</p>";
+        public const string CreateNoteErrorMessage = @"<p>Check your form for errors.</p><p>Author's name must be 3 symbols minimum.</p><p>Title must be 3 symbols minimum.</p><p>YouTube link must be valid YouTube URL.</p>";
 
         private readonly UsersService users;
         private readonly TubesService tubes;
@@ -27,8 +28,7 @@
                 return RedirectToLogin();
             }
 
-            int userId = this.users.GetByName(this.User.Name).Id;
-            this.Model["id"] = userId.ToString();
+            this.GetUserIdForNavBar();
 
             this.Model.Data["username"] = this.User.Name;
             return View();
@@ -43,21 +43,31 @@
                 RedirectToLogin();
             }
 
+            this.GetUserIdForNavBar();
+
             if (!this.IsValidModel(model))
             {
                 ShowError(CreateNoteErrorMessage);
                 return View();
             }
 
-            var username = this.User.Name;
-
-            var success = this.tubes.Add(model.Title.CapitalizeFirstLetter(), model.Author, model.Description, model.VideoId, username);
-
-            if (success)
+            string youTubeId = GetYouTubeIdFromLink(model.VideoId);
+            if (youTubeId == null)
             {
-                this.ShowAlert("Successfull upload!");
+                ShowError(CreateNoteErrorMessage);
+                return View();
             }
-            return View();
+
+            var username = this.User.Name;
+            var tubeId = this.tubes.Add(model.Title.CapitalizeFirstLetter(), model.Author, model.Description, youTubeId, username);
+
+            if (tubeId == default(int))
+            {
+                ShowError(CreateNoteErrorMessage);
+                return View();
+            }
+
+            return this.RedirectToAction($"/tubes/details?id={tubeId}");
         }
 
         [HttpGet]
@@ -71,8 +81,7 @@
             this.tubes.IncrementViewsByOne(id);
             var tube = this.tubes.GetById(id);
 
-            int userId = this.users.GetByName(this.User.Name).Id;
-            this.Model["id"] = userId.ToString();
+            this.GetUserIdForNavBar();
 
             this.Model.Data["title"] = tube.Title;
             this.Model.Data["author"] = tube.Author;
@@ -80,6 +89,21 @@
             this.Model.Data["videoid"] = tube.VideoId;
             this.Model.Data["views"] = tube.Views.ToString();
             return View();
+        }
+
+        private static string GetYouTubeIdFromLink(string youTubeLink)
+        {
+            string youTubeId = null;
+            if (youTubeLink.Contains("youtube.com"))
+            {
+                youTubeId = youTubeLink.Split("?v=")[1];
+            }
+            else if (youTubeLink.Contains("youtu.be"))
+            {
+                youTubeId = youTubeLink.Split("/").Last();
+            }
+
+            return youTubeId;
         }
     }
 }

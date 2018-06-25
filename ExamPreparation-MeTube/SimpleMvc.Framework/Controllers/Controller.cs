@@ -102,6 +102,12 @@
             this.Request.Session.Clear();
         }
 
+        public virtual void OnAuthentication()
+        {
+            // If a child controller needs to implement this lifecycle method,
+            // they will simply override it
+        }
+
         private void InitializeViewModelData()
         {
             this.Model["displayType"] = this.User.IsAuthenticated ? "none" : "block";

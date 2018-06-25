@@ -58,10 +58,11 @@
 
             var userFormat = File.ReadAllText("../../../Views/Home/user.html");
 
+            this.GetUserIdForNavBar();
+
             this.Model.Data["user"] = userFormat;
             this.Model.Data["username"] = username;
             this.Model.Data["userhome"] = result.ToString();
-            this.Model["id"] = userId.ToString();
 
             this.Model["guest"] = string.Empty;
 

@@ -86,8 +86,9 @@
                 return View();
             }
 
+            
             var userExist = this.users.UserExists(model.Username, model.Password);
-            if (!userExist)
+            if (userExist == null)
             {
                 ShowError(LoginErrorMessage);
                 return View();
@@ -129,7 +130,7 @@
             return View();
         }
 
-        [HttpPost]
+        [HttpGet]
         public IActionResult Logout()
         {
             SignOut();

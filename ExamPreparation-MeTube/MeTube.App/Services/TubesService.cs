@@ -16,7 +16,7 @@
             this.db = new MeTubeDbContext();
         }
 
-        public bool Add(
+        public int Add(
             string title, 
             string author, 
             string description, 
@@ -39,10 +39,10 @@
 
                 this.db.Tubes.Add(tube);
                 this.db.SaveChanges();
-                return true;
+                return tube.Id;
             }
 
-            return false;
+            return default(int);
         }
 
         public IEnumerable<TubeViewModel> All()

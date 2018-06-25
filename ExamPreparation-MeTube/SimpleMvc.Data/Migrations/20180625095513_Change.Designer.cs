@@ -11,9 +11,10 @@ using System;
 namespace SimpleMvc.Data.Migrations
 {
     [DbContext(typeof(MeTubeDbContext))]
-    partial class MeTubeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180625095513_Change")]
+    partial class Change
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -3,6 +3,6 @@
     public class Configuration
     {
         public const string ConfigurationString =
-            @"Server=.;Database=MeTubeDb;Integrated Security=True";
+            @"Server=.;Database=MeTubeDbDanny;Integrated Security=True";
     }
 }

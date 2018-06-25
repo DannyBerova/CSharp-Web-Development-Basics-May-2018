@@ -22,6 +22,7 @@
         public string Password { get; set; }
 
         [Required]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
         public ICollection<Tube> Tubes { get; set; }
