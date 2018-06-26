@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <AssemblyName>KittensApp.WebIt</AssemblyName>
+    <RootNamespace>KittensApp.WebIt</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\KittenApp.Data\KittenApp.Data.csproj" />
+    <ProjectReference Include="..\KittenApp.Models\KittenApp.Models.csproj" />
+    <ProjectReference Include="..\SimpleMvc.Common\SimpleMvc.Common.csproj" />
+    <ProjectReference Include="..\SimpleMvc.Framework\SimpleMvc.Framework.csproj" />
+    <ProjectReference Include="..\WebServer\WebServer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\BindingModels\" />
+    <Folder Include="Content\" />
+  </ItemGroup>
+
+</Project>
