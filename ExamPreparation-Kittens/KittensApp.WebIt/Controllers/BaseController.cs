@@ -55,8 +55,6 @@
             }
         }
 
-        protected IActionResult RedirectToHome() => RedirectToAction("/home/index");
-
         public override void OnAuthentication()
         {
             this.Model.Data["topMenu"] = this.User.IsAuthenticated ?  UsersTopMenuHtml : GuestsTopMenuHtml;
@@ -64,6 +62,8 @@
             base.OnAuthentication();
         }
 
+        protected IActionResult RedirectToHome() => RedirectToAction("/home/index");
+		
         protected void SetValidatorErrors()
         {
             var resultErrors = new StringBuilder();
