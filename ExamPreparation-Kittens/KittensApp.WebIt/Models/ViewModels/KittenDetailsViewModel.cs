@@ -12,7 +12,7 @@
 
         public string Breed { get; set; }
 
-        public string PictureUrl { get; set; } = "https://www.catster.com/wp-content/uploads/2017/12/A-kitten-meowing.jpg";
+        public string PictureUrl { get; set; } = "https://vignette.wikia.nocookie.net/beastwarstransformers/images/a/a1/Cat-adult-landing-hero.jpg/revision/latest?cb=20170705171807";
 
         public static Expression<Func<Kitten, KittenDetailsViewModel>> FromKitten =>
             k => new KittenDetailsViewModel()

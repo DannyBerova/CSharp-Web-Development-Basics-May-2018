@@ -16,7 +16,7 @@ namespace KittenApp.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                string connectionString = @"Server=.;Database=KittenApp_Danny;Integrated Security=True";
+                string connectionString = @"Server=DESKTOP-32FEOB6\SQLEXPRESS;Database=KittenAppYordan;Integrated Security=True";
                 optionsBuilder.UseSqlServer(connectionString);
 
             }

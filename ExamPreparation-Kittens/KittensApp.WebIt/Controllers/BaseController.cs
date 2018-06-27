@@ -1,6 +1,7 @@
 ﻿namespace KittensApp.WebIt.Controllers
 {
     using System.Linq;
+    using System.Text;
     using KittenApp.Data;
     using KittenApp.Models;
     using SimpleMvc.Framework.Controllers;
@@ -56,17 +57,30 @@
 
         protected IActionResult RedirectToHome() => RedirectToAction("/home/index");
 
-        protected void ShowError(string error)
-        {
-            this.Model.Data["show-error"] = "block";
-            this.Model.Data["error"] = error;
-        }
-
         public override void OnAuthentication()
         {
             this.Model.Data["topMenu"] = this.User.IsAuthenticated ?  UsersTopMenuHtml : GuestsTopMenuHtml;
 
             base.OnAuthentication();
         }
+
+        protected void SetValidatorErrors()
+        {
+            var resultErrors = new StringBuilder();
+            var errors = this.ParameterValidator.ModelErrors;
+            foreach (var error in errors)
+            {
+                resultErrors.AppendLine($"<p>{string.Join(" ", error.Value)}</p>");
+            }
+            this.Model.Data["show-error"] = "block";
+            this.Model.Data["error"] = resultErrors.ToString();
+        }
+
+        protected void ShowError(string error)
+        {
+            this.Model.Data["show-error"] = "block";
+            this.Model.Data["error"] = error;
+        }
+
     }
 }

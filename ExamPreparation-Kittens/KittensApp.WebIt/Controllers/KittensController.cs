@@ -21,6 +21,7 @@
         {
             this.kittens = new KittensService();
         }
+
         [PreAuthorize]
         public IActionResult Add()
         {
@@ -39,6 +40,12 @@
             if (!this.User.IsAuthenticated)
             {
                 return RedirectToHome();
+            }
+
+            if (!this.IsValidModel(model))
+            {
+                SetValidatorErrors();
+                return this.View();
             }
 
             Breed breed = this.kittens.GetBreed(model.Breed);
@@ -96,15 +103,13 @@
                             .Select(KittenDetailsViewModel.FromKitten)
                             .Select(kdvm =>
                                 $@"<div class=""col-4"">
-                        <img class=""img-thumbnail"" 
-src=""https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350"" 
-alt=""{kdvm.Name}'s photo"" />
-                        <div>
-                            <h5>Name: {kdvm.Name}</h5>
-                            <h5>Age: {kdvm.Age}</h5>
-                            <h5>Breed: {kdvm.Breed}</h5>
-                        </div>
-                    </div>")
+                                    <img class=""img-thumbnail"" src={kdvm.PictureUrl} alt=""{kdvm.Name}'s photo"" />
+                                        <div>
+                                            <h5>Name: {kdvm.Name}</h5>
+                                            <h5>Age: {kdvm.Age}</h5>
+                                            <h5>Breed: {kdvm.Breed}</h5>
+                                        </div>
+                                    </div>")
                             .ToList();
         }
     }

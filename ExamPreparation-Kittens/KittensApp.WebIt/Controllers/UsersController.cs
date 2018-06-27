@@ -27,7 +27,7 @@
         {
             if (!this.IsValidModel(model))
             {
-                ShowError("Check your form for errors!");
+                SetValidatorErrors();
                 return this.View();
             }
 
@@ -46,7 +46,7 @@
         [HttpGet]
         public IActionResult Login()
         {
-            this.Model.Data["error"] = string.Empty;
+            //this.Model.Data["error"] = string.Empty;
             return this.View();
         }
 
