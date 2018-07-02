@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ExamWeb.Common\ExamWeb.Common.csproj" />
+    <ProjectReference Include="..\ExamWeb.Data\ExamWeb.Data.csproj" />
+    <ProjectReference Include="..\ExamWeb.Models\ExamWeb.Models.csproj" />
+  </ItemGroup>
+
+</Project>

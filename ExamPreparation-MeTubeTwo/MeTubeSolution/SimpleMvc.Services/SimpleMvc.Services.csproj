@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SimpleMvc.Common\SimpleMvc.Common.csproj" />
+    <ProjectReference Include="..\SimpleMvc.Common\SimpleMvc.Common.csproj" />
+    <ProjectReference Include="..\SimpleMvc.Data\SimpleMvc.Data.csproj" />
+  </ItemGroup>
+
+</Project>
