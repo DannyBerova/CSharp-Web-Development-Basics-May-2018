@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SoftUni.WebServer.Common\SoftUni.WebServer.Common.csproj" />
+    <ProjectReference Include="..\SoftUni.WebServer.Data\SoftUni.WebServer.Data.csproj" />
+    <ProjectReference Include="..\SoftUni.WebServer.Models\SoftUni.WebServer.Models.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,43 @@
+﻿<div class="container">
+    <div class="row justify-content-center">
+        <div class="col col-md-10">
+            <div class="text-center">
+                <h1 class="display-3">Create Product</h1>
+            </div>
+            <hr />
+
+            <form method="post" action="/products/add">
+
+                <div class="form-group row">
+                    <label class="col-form-label" for="name">Name</label>
+                    <input required type="text" name="Name" class="form-control" id="name" />
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-form-label" for="price">Price</label>
+                    <input required type="number" step="0.01" min="0" name="Price" class="form-control" id="price" />
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-form-label" for="description">Description</label>
+                    <textarea required class="form-control" name="Description" id="description" rows="5"></textarea>
+                </div>
+                <hr class="hr-2 bg-dark" />
+                <div class="row justify-content-around">
+
+                    <div ><label class="radio-inline"><input type="radio" name="Type" value="1"> Food</label> </div><br />
+                    <div ><label class="radio-inline"><input type="radio" name="Type" value="2"> Domestic</label></div> <br />
+                    <div ><label class="radio-inline"><input type="radio" name="Type" value="3"> Health</label></div> <br />
+                    <div ><label class="radio-inline"><input type="radio" name="Type" value="4"> Cosmetic</label></div> <br />
+                    <div ><label class="radio-inline"><input type="radio" name="Type" value="5" checked> Other</label></div>
+
+                </div>
+                <hr class="hr-2 bg-dark" />
+                <div class="row justify-content-center">
+                <input type="submit" class="btn btn-danger btn-lg btn-block" value="Create" />
+                </div>
+            </form>
+            <br />
+        </div>
+    </div>
+</div>
