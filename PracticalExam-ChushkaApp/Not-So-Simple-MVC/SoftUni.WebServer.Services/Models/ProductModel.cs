@@ -23,7 +23,7 @@ namespace SoftUni.WebServer.Services.Models
 
         public string Description { get; set; }
 
-        public static Expression<Func<Product, ProductModel>> FromPost =>
+        public static Expression<Func<Product, ProductModel>> FromProduct =>
             p => new ProductModel()
             {
                 Name = p.Name,

@@ -51,7 +51,7 @@
 
         public const string GuestFormatPath = "../../../Views/Home/Guest.html";
 
-        public const string InvalidPossitionMessage = "Invalid Position!";
+        public const string InvalidProductTypeMessage = "Invalid Product Type!";
 
         public const string UnsuccessfullRegistrationMessage = "Unsuccessfull Registration!";
 

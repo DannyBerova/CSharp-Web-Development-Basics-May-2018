@@ -20,7 +20,7 @@
         {
             try
             {
-                var post = new Product
+                var product = new Product
                 {
                     Name = name.CapitalizeFirstLetter(),
                     Price = price,
@@ -28,10 +28,10 @@
                     Type = type
                 };
 
-                this.db.Products.Add(post);
+                this.db.Products.Add(product);
                 this.db.SaveChanges();
 
-                return post.Id;
+                return product.Id;
             }
             catch
             {
@@ -51,39 +51,39 @@
             => this.db
                 .Products
                 .Where(p => p.Id == id)
-                .Select(ProductModel.FromPost)
+                .Select(ProductModel.FromProduct)
                 .FirstOrDefault();
 
         public void Update(int id, string name, decimal price, string description, ProductType type)
         {
-            var post = this.db.Products.Find(id);
+            var product = this.db.Products.Find(id);
 
-            if (post == null)
+            if (product == null)
             {
                 return;
             }
 
-            post.Name = name.CapitalizeFirstLetter();
-            post.Price = price;
-            post.Description = description;
-            post.Type = type;
+            product.Name = name.CapitalizeFirstLetter();
+            product.Price = price;
+            product.Description = description;
+            product.Type = type;
 
             this.db.SaveChanges();
         }
 
         public string Delete(int id)
         {
-            var post = this.db.Products.Find(id);
+            var product = this.db.Products.Find(id);
 
-            if (post == null)
+            if (product == null)
             {
                 return null;
             }
 
-            this.db.Products.Remove(post);
+            this.db.Products.Remove(product);
             this.db.SaveChanges();
 
-            return post.Name;
+            return product.Name;
         }
 
         public ProductType GetProductType(int modelType)

@@ -31,8 +31,8 @@
             {
 
                 var userFormat = File.ReadAllText(Constants.UserFormatPath);
-                this.ViewData["homeContent"] = userFormat;
 
+                this.ViewData["homeContent"] = userFormat;
                 this.ViewData["greetings"] = Constants.UserGreetingsMessage;
 
                 if (this.User.IsInRole("Admin"))
@@ -40,11 +40,9 @@
                     this.ViewData["greetings"] = Constants.AdminGreetingsMessage;
                 }
 
-
                 var productsCards = this.products.All().Select(g => g.ToHtml()).ToList();
 
                 var result = new StringBuilder();
-                //result.Append(@"<div class=""row d-flex justify-content-around mt-4"">");
 
                 for (int i = 0; i < productsCards.Count; i++)
                 {
@@ -54,9 +52,8 @@
                     }
 
                     result.Append(productsCards[i]);
-
-                   
                 }
+
                 result.Append("</div>");
 
                 this.ViewData.Data["username"] = this.User.Name;

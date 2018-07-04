@@ -17,10 +17,7 @@
                         <hr class=""hr-1 bg-white""/>
                         <h6 class=""text-center text-white mb-3"">${product.Price}</h6>
                     </div>              
-                </a>
-
-";
-
+                </a>";
 
         public static string ToHtml(this OrdersListingModel order)
             => $@"
@@ -31,24 +28,6 @@
                         <td>{order.SalePrice}</td>
                         <td>{order.OrderedOn}</td>
                     </tr>";
-
-        //public static string ToHtml(this HomeListingModels post)
-        //    => $@"
-        //                    <div class=""card border-primary mb-3"">
-        //                        <div class=""card-body text-primary"">
-        //                            <h4 class=""card-title"">{post.Title}</h4>
-        //                            <p class=""card-text"">
-        //                                {post.Content}
-        //                            </p>
-        //                        </div>
-        //                        <div class=""card-footer bg-transparent text-right"">
-        //                            <span class=""text-muted"">
-        //                                Created on {(post.CreatedOn ?? DateTime.UtcNow).ToShortDateString()} by
-        //                                <em>
-        //                                    <strong>{post.CreatedBy}</strong>
-        //                                </em>
-        //                            </span>
-        //                        </div>
-        //                    </div>";
+       
     }
 }

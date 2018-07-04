@@ -9,9 +9,6 @@
 
     public class UsersController : BaseController
     {
-        //public const string RegisterErrorMessage = @"<p>Check your form for errors.</p><p> Username must be between 3 and 50 symbols.</p><p>Passwords must be between 4 and 30 symbols.</p><p>Confirm password must match the provided password.</p>";
-        //public const string ConfirmPasswordError = @"<p>Confirm password must match the provided password.</p>";
-
         private readonly UsersService users;
 
         private readonly ProductsService products;
@@ -50,23 +47,15 @@
                 return this.View();
             }
 
-            //if (model.Password != model.ConfirmPassword)
-            //{
-            //    ShowError(ConfirmPasswordError);
-            //    return View();
-            //}
+            var user = this.users.Create(model.Username, model.Password, model.FullName, model.Email);
 
-            var userId = this.users.Create(model.Username, model.Password, model.FullName, model.Email);
-
-            if (userId == null)
+            if (user == null)
             {
                 ShowError(Constants.UnsuccessfullRegistrationMessage);
                 return View();
             }
 
-            var role = userId == 1 ? "Admin" : "User";
-
-            this.SignIn(model.Username, userId.Value,  new List<string>(){role});
+            this.SignIn(model.Username, user.Id,  new List<string>(){user.RoleName});
             return RedirectToHome();
         }
 
@@ -95,9 +84,8 @@
                 ShowError(Constants.InvalidCredentialsMessage);
                 return this.View();
             }
-
-            var role = userId == 1 ? "Admin" : "User";
-            this.SignIn(model.Username, userId.Value, new List<string>() { role });
+           
+            this.SignIn(model.Username, userId.Id, new List<string>() { userId.RoleName });
             return this.RedirectToHome();
         }
 

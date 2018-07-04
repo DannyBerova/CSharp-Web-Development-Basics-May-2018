@@ -1,13 +1,12 @@
 ﻿namespace SoftUni.ChushkaApp.Controllers
 {
-    using System;
-    using System.Linq;
     using Infrastructure;
     using Models;
     using WebServer.Models;
     using WebServer.Mvc.Attributes.HttpMethods;
     using WebServer.Mvc.Interfaces;
     using WebServer.Services;
+    using System;
 
     public class ProductsController : BaseController
     {
@@ -21,7 +20,7 @@
         [HttpGet]
         public IActionResult Add()
         {
-            if (!this.User.IsAuthenticated || !this.User.Roles.Contains("Admin"))
+            if (!this.User.IsAuthenticated || !this.User.IsInRole("Admin"))
             {
                 return RedirectToHome();
             }
@@ -32,7 +31,7 @@
         [HttpPost]
         public IActionResult Add(ProductCreateBindingModel model)
         {
-            if (!this.User.Roles.Contains("Admin"))
+            if (!this.User.IsInRole("Admin"))
             {
                 return RedirectToHome();
             }
@@ -47,7 +46,7 @@
 
             if (productType == null)
             {
-                this.ShowError(Constants.InvalidPossitionMessage);
+                this.ShowError(Constants.InvalidProductTypeMessage);
                 return this.View();
             }
 
@@ -79,11 +78,12 @@
 
             this.ViewData["adminActions"] = String.Empty;
 
-            if (this.User.Roles.Contains("Admin"))
+            if (this.User.IsInRole("Admin"))
             {
                 this.ViewData["adminActions"] = $@"<a class=""btn chushka-bg-color"" href=""/admin/edit?id={id}"">Edit</a>
                                                 <a class=""btn chushka-bg-color"" href=""/admin/delete?id={id}"">Delete</a>";
             }
+
             return this.View();
         }
     }

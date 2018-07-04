@@ -1,9 +1,9 @@
 ﻿namespace SoftUni.ChushkaApp.Controllers
 {
-    using System;
-    using System.Text;
     using Infrastructure;
     using Models;
+    using System.Linq;
+    using System.Text;
     using WebServer.Models;
     using WebServer.Mvc.Attributes.HttpMethods;
     using WebServer.Mvc.Interfaces;
@@ -25,6 +25,7 @@
         public IActionResult Edit(int id)
         {
             this.ViewData["id"] = id.ToString();
+
             return this.PrepareEditAndDeleteView(id)
                 ?? this.View();
         }
@@ -47,7 +48,7 @@
 
             if (productType == null)
             {
-                this.ShowError(Constants.InvalidPossitionMessage);
+                this.ShowError(Constants.InvalidProductTypeMessage);
                 return this.Edit(id);
             }
 
@@ -62,6 +63,21 @@
         {
             this.ViewData["id"] = id.ToString();
 
+            var product = this.products.GetById(id);
+            var productTypeId = product.TypeId;
+
+            for (int i = 1; i <= this.Context.ProductTypes.Count(); i++)
+            {
+                if (i == productTypeId)
+                {
+                    this.ViewData[$"{productTypeId}Check"] = "checked";
+                }
+                else
+                {
+                    this.ViewData[$"{i}Check"] = "disabled";
+                }
+            }
+
             return this.PrepareEditAndDeleteView(id) ?? this.View();
         }
 
@@ -73,7 +89,9 @@
                 return this.RedirectToLogin();
             }
 
-            var postTitle = this.products.Delete(id);
+            var productName = this.products.Delete(id);
+
+            this.ShowAlert($"Product {productName} is deleted!");
 
             return this.RedirectToHome();
         }

@@ -3,6 +3,7 @@
     using System.Linq;
     using Common;
     using Data;
+    using Models;
     using WebServer.Models;
 
     public class UsersService
@@ -14,11 +15,12 @@
             this.db = new ChushkaDbContext();
         }
 
-        public int? Create(string username, string password, string fullName, string email)
+        public UserAfterCreationModel Create(string username, string password, string fullName, string email)
         {
 
             var isAdmin = !this.db.Users.Any();
 
+            UserAfterCreationModel modelUser = null;
             try
             {
                 var user = new User
@@ -33,48 +35,36 @@
                 this.db.Users.Add(user);
                 this.db.SaveChanges();
 
-                return user.Id;
+                modelUser = new UserAfterCreationModel()
+                {
+                    Id = user.Id,
+                    RoleId = user.RoleId,
+                    RoleName = user.Role.Name
+                };
             }
             catch
             {
-                return null;
+                return modelUser;
             }
+
+            return null;
         }
 
-        public int? UserExists(string username, string password)
+        public UserAfterCreationModel UserExists(string username, string password)
         {
             var userId = this.db.Users
-                .FirstOrDefault(t => t.Username == username && t.PasswordHash == PasswordUtilities.GetPasswordHash(password))?.Id;
+                .Where(t => t.Username == username && t.PasswordHash == PasswordUtilities.GetPasswordHash(password))
+                .Select(UserAfterCreationModel.FromUser)
+                .FirstOrDefault();
 
             return userId;
         }
 
-        //public int? GetRole(string role)
-        //{
-        //    return this.db.Roles
-        //        .FirstOrDefault
-        //            (p => p.Name == role)?.Id;
-        //}
-
-        //public IEnumerable<UserWithDetailsModel> All()
-        //{
-        //    return this.db.Users
-        //        .Include(u => u.)
-        //        .Include(u => u.Posts)
-        //        .Select(UserWithDetailsModel.FromPost)
-        //        .ToList();
-        //}
-
-        //public string Approve(int id)
-        //{
-        //    var user = this.db.Users.Find(id);
-        //    if (user != null && !user.IsApproved)
-        //    {
-        //        user.IsApproved = true;
-        //        this.db.SaveChanges();
-        //    }
-
-        //    return user?.Email;
-        //}
+        public int? GetRole(string role)
+        {
+            return this.db.Roles
+                .FirstOrDefault
+                    (p => p.Name == role)?.Id;
+        }    
     }
 }

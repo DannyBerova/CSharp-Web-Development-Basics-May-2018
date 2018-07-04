@@ -25,7 +25,7 @@
 
         [Required]
         [DataType(DataType.EmailAddress)]
-       // [Email]
+        //[Email]
         public string Email { get; set; }
     }
 }

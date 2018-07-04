@@ -5,7 +5,6 @@
     using System.Text;
     using Infrastructure;
     using WebServer.Data;
-    using WebServer.Models;
     using WebServer.Mvc.Controllers;
     using WebServer.Mvc.Interfaces;
 
@@ -14,7 +13,6 @@
         protected BaseController()
         {
             this.Context = new ChushkaDbContext();
-            //this.SeedDb();
 
             this.ViewData["show-error"] = "none";
             this.ViewData["show-alert"] = "none";
@@ -25,48 +23,24 @@
 
         protected bool IsAdmin => this.User.IsAuthenticated && this.User.Roles.Contains("Admin");
 
-        //public void SeedDb()
-        //{
-        //    using (this.Context)
-        //    {
-        //        if (!this.Context.Roles.Any())
-        //        {
-        //            this.Context.Roles.Add(new Role() { Name = "Admin" });
-        //            this.Context.Roles.Add(new Role() { Name = "User" });
-
-        //            this.Context.SaveChanges();
-        //        }
-        //        if (!this.Context.ProductTypes.Any())
-        //        {
-        //            this.Context.ProductTypes.Add(new ProductType() { Name = "Food" });
-        //            this.Context.ProductTypes.Add(new ProductType() { Name = "Domestic" });
-        //            this.Context.ProductTypes.Add(new ProductType() { Name = "Health" });
-        //            this.Context.ProductTypes.Add(new ProductType() { Name = "Cosmetic" });
-        //            this.Context.ProductTypes.Add(new ProductType() { Name = "Other" });
-
-        //            this.Context.SaveChanges();
-        //        }
-        //    }
-        //}
-
+       
         public override void OnAuthentication()
         {
-
             this.ViewData["topMenu"] = this.User.IsAuthenticated ? Constants.UsersTopMenuHtml : Constants.GuestsTopMenuHtml;
 
             if (this.User.IsAuthenticated)
             {
                 this.ViewData["topMenu"] = Constants.UsersTopMenuHtml;
 
-                if (this.User.Roles.Contains("Admin"))
+                if (this.User.IsInRole("Admin"))
                 {
                     this.ViewData["topMenu"] = Constants.AdminOnlyMenu;
                 }
             }
-            else
-            {
-                this.ViewData["topMenu"] = Constants.GuestsTopMenuHtml;
-            }
+            //else
+            //{
+            //    this.ViewData["topMenu"] = Constants.GuestsTopMenuHtml;
+            //}
 
             base.OnAuthentication();
         }
